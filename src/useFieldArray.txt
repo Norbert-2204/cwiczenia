@@ -1,0 +1,3 @@
+useFieldArray - hook służący do dynamicznego zarządzania tablicami
+control - taki obiekt który daje kontrole nad naszą tablicą, dodaje się go do useFieldArray
+przykład useFieldArray = useFieldArray({name: "name", control})
