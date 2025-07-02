@@ -1,0 +1,94 @@
+useForm służy do łatwiejszego zarządzania formularzami
+Tworzy się obiekt by zainichować useForm
+const {
+  register, //służy do rejestrowania 
+  handleSubmit, //służy jako funkcja akceptacji fomularza
+  formState: {errors}, //służy do zarządzania błędami
+  setValue, //służy do nadawania wartości np (1)
+  control, //służy do zarządzania tablicy z useFieldArray
+  watch, //nasłuchuje zmian w elemencie
+} = useForm({
+  resolver: zodResolver(schema) (2), // schemat walidacji czyli sprawdzanie errors z formState
+  defaultValues: {
+    // wartości domyślne np
+    name: "",
+    email: "",
+    checkbox: false,
+    array: []
+  }
+})
+
+(1)
+  const handleRadio = (value) => {
+    if (selected === value) {
+      setSelected(null);
+      setValue("selected", null);
+    } else {
+      setSelected(value);
+      setValue("selected", value);
+    }
+  };
+  setValue("string z nazwą", value - cokolwiek)
+
+  (2)
+  jak wygląda schema (zodResolver)
+
+  const schema = z
+    .object({
+      name: z.string().min(3, "opis błędu"),
+      surname: z
+        .string()
+        .min(3, "opis błędu"),
+      email: z.string().email("opis błędu"),
+      phone: z
+        .string()
+        .length(9, "opis błędu")
+        .regex(/^\d+$/, "opis błędu"),
+      languages: z
+        .array(z.enum(["react", "html", "css", "node", "next"]))
+        .min(1, "opis błędu"),
+      file: z
+        .file("Plik jest wymagany")
+        .mime(["image/jpeg", "image/png"], "opis błędu"),
+      selected: z.enum(["nazwa pierwsza", "nazwa druga"]),
+      checkbox: z.boolean(),
+      array: z.array(
+        z.object({
+          name: z.string(
+            "opis błędu"
+          ),
+          level: z.string(
+            "opis błędu"
+          ),
+        })
+      ),
+    })
+    .refine(
+      (data) => {
+        if (data.checkbox) {
+          return data.skills && data.skills.length > 0;
+        }
+        return true;
+      },
+      {
+        message:
+          "opis błędu",
+        path: ["array"],
+      }
+    );
+
+    z.string() - sprawdza czy podany typ jest stringiem
+
+    z.enum() - sprawdza czy wartość sprawdzanego elementu jest jedną z rzeczy z tablicy
+
+    .min(wartość) - sprawdza czy jest minimum podanych znaków
+
+    .max(wartość) - sprawdza czy ilość znaków nie przekracza podanej wartości
+
+    z.file() - sprawdza czy plik został dodany
+
+    .mime(["wymaganie 1", "wymaganie2", ...wymagania]) - sprawdza czy wybrany plik jest zgodny z podanym formatem
+
+    z.array() - zaczynamy sprawdzanie tablicy i co się w niej znajduje
+
+    .regex(regex, "opis błędu") - sprawdza podany regex
