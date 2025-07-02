@@ -1,23 +1,23 @@
 import "./App.css";
-import Product from "./components/Products";
-import UserCard from "./components/UserCard";
+import Product from "./components/useState/Products.jsx";
+import UserCard from "./components/useState/UserCard.jsx";
 // import { useState } from "react";
-import TodoInput from "./components/TodoInput.jsx";
-import TodoItem from "./components/TodoItem.jsx";
-import Button from "./components/ChangeDirection.jsx";
-import SwitchLanguage from "./components/ChangeLanguage.jsx";
-import Greeting from "./components/Greeting.jsx";
-import Submit from "./components/form.jsx";
-import FormApp from "./components/useForm-zod.jsx";
-import RegisterForm from "./components/RegisterForm.jsx";
-import TestField from "./components/useFieldArr.jsx";
+import TodoInput from "./components/useState/TodoInput.jsx";
+import TodoItem from "./components/useState/TodoItem.jsx";
+import Button from "./components/useState/ChangeDirection.jsx";
+import SwitchLanguage from "./components/useState/ChangeLanguage.jsx";
+import Greeting from "./components/useState/Greeting.jsx";
+import Submit from "./components/useState/form.jsx";
+import FormApp from "./components/useForm.Effect.Field/useForm-zod.jsx";
+import RegisterForm from "./components/useForm.Effect.Field/RegisterForm.jsx";
+import TestField from "./components/useForm.Effect.Field/useFieldArr.jsx";
 import TailwindTesting from "./components/Tailwind.jsx";
 import CharacterList, {
   Clock,
   Counter,
   UserStatus,
   Timer,
-} from "./components/useEffect.jsx";
+} from "./components/useForm.Effect.Field/useEffect.jsx";
 import Dashboard from "./components/props drilling/Dashboard.jsx";
 import Post from "./components/props drilling/Post.jsx";
 
@@ -92,5 +92,19 @@ export default App;
 //     <div>
 //       <h1>Aplikacja</h1>
 //       <Dashboard username={username} />
+//     </div>
+//   );
+
+// props drilling 2
+// const book = {
+//     title: "Nowości w React 19",
+//     author: "Agnieszka",
+//     published: "2025-07-01",
+//     comments: 12,
+//   };
+
+//   return (
+//     <div>
+//       <Post {...book} />
 //     </div>
 //   );
