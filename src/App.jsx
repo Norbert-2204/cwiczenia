@@ -11,7 +11,6 @@ import Submit from "./components/useState/form.jsx";
 import FormApp from "./components/useForm.Effect.Field/useForm-zod.jsx";
 import RegisterForm from "./components/useForm.Effect.Field/RegisterForm.jsx";
 import TestField from "./components/useForm.Effect.Field/useFieldArr.jsx";
-import TailwindTesting from "./components/Tailwind.jsx";
 import CharacterList, {
   Clock,
   Counter,
@@ -20,20 +19,10 @@ import CharacterList, {
 } from "./components/useForm.Effect.Field/useEffect.jsx";
 import Dashboard from "./components/props drilling/Dashboard.jsx";
 import Post from "./components/props drilling/Post.jsx";
+import ExampleComponent from "./components/Tailwind.jsx";
 
 function App() {
-  const book = {
-    title: "Nowości w React 19",
-    author: "Agnieszka",
-    published: "2025-07-01",
-    comments: 12,
-  };
-
-  return (
-    <div>
-      <Post {...book} />
-    </div>
-  );
+  return <ExampleComponent />;
 }
 
 export default App;
