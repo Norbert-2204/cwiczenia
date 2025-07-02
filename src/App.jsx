@@ -18,9 +18,22 @@ import CharacterList, {
   UserStatus,
   Timer,
 } from "./components/useEffect.jsx";
+import Dashboard from "./components/props drilling/Dashboard.jsx";
+import Post from "./components/props drilling/Post.jsx";
 
 function App() {
-  return <Timer />;
+  const book = {
+    title: "Nowości w React 19",
+    author: "Agnieszka",
+    published: "2025-07-01",
+    comments: 12,
+  };
+
+  return (
+    <div>
+      <Post {...book} />
+    </div>
+  );
 }
 
 export default App;
@@ -71,3 +84,13 @@ export default App;
 //       <SwitchLanguage />
 //       <Greeting></Greeting>
 //     </div> */}
+
+// props drilling 1
+//  const username = "Kasia";
+
+//   return (
+//     <div>
+//       <h1>Aplikacja</h1>
+//       <Dashboard username={username} />
+//     </div>
+//   );
