@@ -92,3 +92,13 @@ const {
     z.array() - zaczynamy sprawdzanie tablicy i co się w niej znajduje
 
     .regex(regex, "opis błędu") - sprawdza podany regex
+
+    .refine() - utworzenie niestandardowej walidacji, wypisując w niej własną funkcję sprawdzającą. łatwy przykład użycia:
+
+  const schema = z.object({
+    password: z.string(),
+    confirmPassword: z.string(),
+    }).refine(data => data.password === data.confirmPassword, {
+    message: "Hasła muszą być takie same",
+    path: ["confirmPassword"],
+  });
