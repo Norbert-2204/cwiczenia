@@ -20,9 +20,20 @@ import CharacterList, {
 import Dashboard from "./components/props drilling/Dashboard.jsx";
 import Post from "./components/props drilling/Post.jsx";
 import ExampleComponent from "./components/Tailwind.jsx";
+import Navbar from "./components/useContext/Navbar.jsx";
+import Profile from "./components/useContext/Profile.jsx";
+import UserProvider from "./components/useContext/UserProvider.jsx";
+import Theme from "./components/useContext/Theme.jsx";
+import ThemeProvider from "./components/useContext/ChangeTheme.jsx";
 
 function App() {
-  return <ExampleComponent />;
+  return (
+    <>
+      <ThemeProvider>
+        <Theme />
+      </ThemeProvider>
+    </>
+  );
 }
 
 export default App;
@@ -97,3 +108,13 @@ export default App;
 //       <Post {...book} />
 //     </div>
 //   );
+
+// userProvider
+{
+  /* <div>
+      <UserProvider>
+        <Navbar />
+        <Profile />
+      </UserProvider>
+    </div> */
+}
