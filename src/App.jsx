@@ -1,7 +1,7 @@
 import "./App.css";
 import Product from "./components/useState/Products.jsx";
 import UserCard from "./components/useState/UserCard.jsx";
-// import { useState } from "react";
+import { useState } from "react";
 import TodoInput from "./components/useState/TodoInput.jsx";
 import TodoItem from "./components/useState/TodoItem.jsx";
 import Button from "./components/useState/ChangeDirection.jsx";
@@ -25,16 +25,47 @@ import Profile from "./components/useContext/Profile.jsx";
 import UserProvider from "./components/useContext/UserProvider.jsx";
 import Theme from "./components/useContext/Theme.jsx";
 import ThemeProvider from "./components/useContext/ChangeTheme.jsx";
+import { useCalculateYearsSince } from "./components/custonHooks/useCalculateYearsSince.js";
+import { useFilterUsers } from "./components/custonHooks/useFilterUsers.js";
+import { useLocalStorage } from "./components/custonHooks/useLocalStorage.js";
 
-function App() {
+const App = () => {
+  const [inputName, setInputName] = useState("");
+  const [names, setNames] = useLocalStorage("names", []);
+  const [showList, setShowList] = useState(false);
+
+  const addName = () => {
+    if (inputName.trim()) {
+      setNames([...names, inputName]);
+      setInputName("");
+    }
+  };
+
   return (
-    <>
-      <ThemeProvider>
-        <Theme />
-      </ThemeProvider>
-    </>
+    <div>
+      <input
+        type="text"
+        value={inputName}
+        onChange={(e) => setInputName(e.target.value)}
+        placeholder="Wpisz imię"
+      />
+      <button onClick={addName}>Dodaj do localStorage</button>
+      <button onClick={() => setShowList(!showList)}>
+        {showList ? "Ukryj listę" : "Pokaż zapisane imiona"}
+      </button>
+
+      {showList && (
+        <ul>
+          {names.length === 0 ? (
+            <li>Brak zapisanych imion</li>
+          ) : (
+            names.map((name, index) => <li key={index}>{name}</li>)
+          )}
+        </ul>
+      )}
+    </div>
   );
-}
+};
 
 export default App;
 
@@ -118,3 +149,49 @@ export default App;
       </UserProvider>
     </div> */
 }
+
+// custom hooks
+
+// zadanie 1
+// const eventData = {
+//   eventName: "Rocznica założenia firmy",
+//   eventDate: "2000-01-01",
+// };
+
+// const App = () => {
+//   const yearsPassed = useCalculateYearsSince(eventData.eventDate);
+//   return (
+//     <h2>
+//       {eventData.eventName}, minęło lat: {yearsPassed}
+//     </h2>
+//   );
+// };
+
+// zadanie 2
+
+// const [filter, setFilter] = useState("");
+//   const { data, loading, error } = useFilterUsers();
+//   const filteredUsers = data
+//     ? data.filter((user) =>
+//         user.name.toLowerCase().includes(filter.toLowerCase())
+//       )
+//     : [];
+
+//   return (
+//     <div>
+//       <input
+//         type="text"
+//         value={filter}
+//         onChange={(e) => setFilter(e.target.value)}
+//         placeholder="Szukaj użytkownika..."
+//       />
+//       {loading && <p>Ładowanie</p>}
+//       {error && <p>{error}</p>}
+//       {!loading && filteredUsers.length === 0 && <p>Brak wyników</p>}
+//       <ul>
+//         {filteredUsers.map((user) => (
+//           <li key={user.id}>{user.name}</li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
