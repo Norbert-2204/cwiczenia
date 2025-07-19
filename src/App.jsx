@@ -28,41 +28,16 @@ import ThemeProvider from "./components/useContext/ChangeTheme.jsx";
 import { useCalculateYearsSince } from "./components/custonHooks/useCalculateYearsSince.js";
 import { useFilterUsers } from "./components/custonHooks/useFilterUsers.js";
 import { useLocalStorage } from "./components/custonHooks/useLocalStorage.js";
+import Modal from "./components/react portal/modal.jsx";
+import { ProductList } from "./components/useMemo/ProductList.jsx";
+import { ExpensiveCalculation } from "./components/useMemo/SlowFunction.jsx";
+import CallbackFilterUsers from "./components/useCallback/CallbackFilterUsers.jsx";
+import VisualCounters from "./components/useCallback/VisualCounters.jsx";
 
 const App = () => {
-  const [inputName, setInputName] = useState("");
-  const [names, setNames] = useLocalStorage("names", []);
-  const [showList, setShowList] = useState(false);
-
-  const addName = () => {
-    if (inputName.trim()) {
-      setNames([...names, inputName]);
-      setInputName("");
-    }
-  };
-
   return (
     <div>
-      <input
-        type="text"
-        value={inputName}
-        onChange={(e) => setInputName(e.target.value)}
-        placeholder="Wpisz imię"
-      />
-      <button onClick={addName}>Dodaj do localStorage</button>
-      <button onClick={() => setShowList(!showList)}>
-        {showList ? "Ukryj listę" : "Pokaż zapisane imiona"}
-      </button>
-
-      {showList && (
-        <ul>
-          {names.length === 0 ? (
-            <li>Brak zapisanych imion</li>
-          ) : (
-            names.map((name, index) => <li key={index}>{name}</li>)
-          )}
-        </ul>
-      )}
+      <VisualCounters />
     </div>
   );
 };
@@ -193,5 +168,80 @@ export default App;
 //           <li key={user.id}>{user.name}</li>
 //         ))}
 //       </ul>
+//     </div>
+//   );
+
+// zadanie 3
+
+// const [inputName, setInputName] = useState("");
+//   const [names, setNames] = useLocalStorage("names", []);
+//   const [showList, setShowList] = useState(false);
+
+//   const addName = () => {
+//     if (inputName.trim()) {
+//       setNames([...names, inputName]);
+//       setInputName("");
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <input
+//         type="text"
+//         value={inputName}
+//         onChange={(e) => setInputName(e.target.value)}
+//         placeholder="Wpisz imię"
+//       />
+//       <button onClick={addName}>Dodaj do localStorage</button>
+//       <button onClick={() => setShowList(!showList)}>
+//         {showList ? "Ukryj listę" : "Pokaż zapisane imiona"}
+//       </button>
+
+//       {showList && (
+//         <ul>
+//           {names.length === 0 ? (
+//             <li>Brak zapisanych imion</li>
+//           ) : (
+//             names.map((name, index) => <li key={index}>{name}</li>)
+//           )}
+//         </ul>
+//       )}
+//     </div>
+//   );
+
+// Modal
+
+//  const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [inputValue, setInputValue] = useState("");
+//   const [items, setItems] = useState(["Element 1", "Element 2", "Element 3"]);
+
+//   const toggleModal = () => {
+//     setIsModalOpen((prev) => !prev);
+//   };
+
+//   return (
+//     <div>
+//       <ul>
+//         {items.map((item, index) => (
+//           <li key={index}>{item}</li>
+//         ))}
+//       </ul>
+//       <form
+//         onSubmit={(e) => {
+//           e.preventDefault();
+//           setItems((prevItems) => [...prevItems, inputValue]);
+//           setInputValue("");
+//         }}
+//       >
+//         <input
+//           name="item"
+//           value={inputValue}
+//           onChange={(e) => setInputValue(e.target.value)}
+//           required
+//         />
+//         <button type="submit">Dodaj</button>
+//       </form>
+//       <button onClick={toggleModal}>Pokaż szczegóły</button>
+//       {isModalOpen && <Modal onClose={toggleModal} itemsCount={items.length} />}
 //     </div>
 //   );
