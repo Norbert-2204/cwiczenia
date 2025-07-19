@@ -31,11 +31,13 @@ import { useLocalStorage } from "./components/custonHooks/useLocalStorage.js";
 import Modal from "./components/react portal/modal.jsx";
 import { ProductList } from "./components/useMemo/ProductList.jsx";
 import { ExpensiveCalculation } from "./components/useMemo/SlowFunction.jsx";
+import CallbackFilterUsers from "./components/useCallback/CallbackFilterUsers.jsx";
+import VisualCounters from "./components/useCallback/VisualCounters.jsx";
 
 const App = () => {
   return (
     <div>
-      <ExpensiveCalculation />
+      <VisualCounters />
     </div>
   );
 };
