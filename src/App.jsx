@@ -33,11 +33,13 @@ import { ProductList } from "./components/useMemo/ProductList.jsx";
 import { ExpensiveCalculation } from "./components/useMemo/SlowFunction.jsx";
 import CallbackFilterUsers from "./components/useCallback/CallbackFilterUsers.jsx";
 import VisualCounters from "./components/useCallback/VisualCounters.jsx";
+import ClickCounter from "./components/useRef/UseRefCounter.jsx";
+import Cart from "./components/useRef/Cart.jsx";
 
 const App = () => {
   return (
     <div>
-      <VisualCounters />
+      <Cart />
     </div>
   );
 };
